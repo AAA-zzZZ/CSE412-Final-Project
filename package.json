@@ -1,5 +1,5 @@
 {
-  "name": "cse412-final-project-group-5",
+  "name": "cse412-final-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,16 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AAA-zzZZ/CSE412-Final-Project-Group-5.git"
+    "url": "git+https://github.com/AAA-zzZZ/CSE412-Final-Project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/AAA-zzZZ/CSE412-Final-Project-Group-5/issues"
+    "url": "https://github.com/AAA-zzZZ/CSE412-Final-Project/issues"
   },
-  "homepage": "https://github.com/AAA-zzZZ/CSE412-Final-Project-Group-5#readme",
+  "homepage": "https://github.com/AAA-zzZZ/CSE412-Final-Project#readme",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
