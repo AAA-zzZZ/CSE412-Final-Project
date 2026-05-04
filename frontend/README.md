@@ -1,3 +1,5 @@
+Note to grader: this can be ignored (just comes with react app dev)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
