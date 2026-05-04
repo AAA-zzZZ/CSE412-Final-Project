@@ -88,25 +88,55 @@ app.get('/api/manufacturers', async (req, res) => {
   }
 });
 
-
 //merchprod
 app.get('/api/merchprod', async (req, res) => {
   try {
-    const result = await pool.query(`SELECT * from MerchProd `);
+    const result = await pool.query(`
+      SELECT
+        mp.merchantid,
+        m.name AS merchantname,
+        mp.productid,
+        p.name AS productname,
+        mp.price,
+        mp.promotion,
+        mp.shipping,
+        mp.availability
+      FROM merchprod mp
+      JOIN merchant m ON mp.merchantid = m.merchantid
+      JOIN product p ON mp.productid = p.productid
+      ORDER BY m.name, p.name
+    `);
+
     res.json(result.rows);
   } catch (err) {
+    console.error("GET /api/merchprod error:", err);
     res.status(500).json({ error: err.message });
-  } 
+  }
 });
 
 //ratings
 app.get('/api/ratings', async (req, res) => {
   try {
-    const result = await pool.query(`SELECT * from ratings`);
+    const result = await pool.query(`
+      SELECT 
+        r.userid,
+        u.username,
+        r.productid,
+        p.name AS productname,
+        r.rating,
+        r.comment,
+        r.datereviewed
+      FROM ratings r
+      JOIN users u ON r.userid = u.userid
+      JOIN product p ON r.productid = p.productid
+      ORDER BY r.datereviewed
+    `);
+
     res.json(result.rows);
   } catch (err) {
+    console.error("GET /api/ratings error:", err);
     res.status(500).json({ error: err.message });
-  } 
+  }
 });
 
 // user
