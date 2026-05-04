@@ -12,6 +12,8 @@ The app lets us do CRUD operations for:
 
 There is also a manufacturer route in the backend for reading manufacturer data.
 
+Note to grader: The other deatils not included in this README, can be found in the submission report.
+
 ## What We Used
 
 - PostgreSQL for the database
@@ -132,4 +134,5 @@ For `ratings` and `merchprod`, the backend also joins related tables so we can s
 
 ## Summary
 
-This project ties together our relational database design, SQL setup, backend CRUD routes, and a simple frontend interface. We used it to show that we can build the database, connect it to an API, and actually interact with the data in a full working app.
+This project ties together our relational database design from Phase 01, SQL setup, backend CRUD routes, and a simple frontend interface. We used it to show that we can build the database, connect it to an API, and actually interact with the data in a full working app.
+We hope you like it!
