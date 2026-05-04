@@ -16,22 +16,38 @@ import MerchProdForm from './MerchProdForm';
 function App() {
   const [activeTab, setActiveTab] = useState('products');
   const [editingItem, setEditingItem] = useState(null);
+  const [creatingItem, setCreatingItem] = useState(false);
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
-    setEditingItem(null); 
+    setEditingItem(null);
+    setCreatingItem(false);
+  };
+
+  const goBackToList = () => {
+    setEditingItem(null);
+    setCreatingItem(false);
   };
 
   const renderContent = () => {
     if (editingItem) {
-      const goBack = () => setEditingItem(null);
-
       switch (activeTab) {
-        case 'products': return <ProductForm mode="edit" initialData={editingItem} onSuccess={goBack} />;
-        case 'users': return <UserForm mode="edit" initialData={editingItem} onSuccess={goBack} />;
-        case 'merchants': return <MerchantForm mode="edit" initialData={editingItem} onSuccess={goBack} />;
-        case 'ratings': return <RatingsForm mode="edit" initialData={editingItem} onSuccess={goBack} />;
-        case 'merchprod': return <MerchProdForm mode="edit" initialData={editingItem} onSuccess={goBack} />;
+        case 'products': return <ProductForm mode="edit" initialData={editingItem} onSuccess={goBackToList} />;
+        case 'users': return <UserForm mode="edit" initialData={editingItem} onSuccess={goBackToList} />;
+        case 'merchants': return <MerchantForm mode="edit" initialData={editingItem} onSuccess={goBackToList} />;
+        case 'ratings': return <RatingsForm mode="edit" initialData={editingItem} onSuccess={goBackToList} />;
+        case 'merchprod': return <MerchProdForm mode="edit" initialData={editingItem} onSuccess={goBackToList} />;
+        default: return <p>Form not found.</p>;
+      }
+    }
+    
+    if (creatingItem) {
+      switch (activeTab) {
+        case 'products': return <ProductForm mode="add" onSuccess={goBackToList} />;
+        case 'users': return <UserForm mode="add" onSuccess={goBackToList} />;
+        case 'merchants': return <MerchantForm mode="add" onSuccess={goBackToList} />;
+        case 'ratings': return <RatingsForm mode="add" onSuccess={goBackToList} />;
+        case 'merchprod': return <MerchProdForm mode="add" onSuccess={goBackToList} />;
         default: return <p>Form not found.</p>;
       }
     }
@@ -60,9 +76,15 @@ function App() {
 
       <hr style={{ marginBottom: '20px' }} />
 
-      {editingItem && (
-        <button onClick={() => setEditingItem(null)} style={{ marginBottom: '20px', padding: '5px' }}>
-          ← Cancel Edit
+      {!editingItem && !creatingItem && (
+        <button onClick={() => setCreatingItem(true)} style={{ marginBottom: '20px', padding: '10px', backgroundColor: 'green', color: 'white' }}>
+          + Add New
+        </button>
+      )}
+
+      {(editingItem || creatingItem) && (
+        <button onClick={goBackToList} style={{ marginBottom: '20px', padding: '5px' }}>
+          ← Cancel
         </button>
       )}
 
