@@ -7,6 +7,8 @@ app.use(cors());
 app.use(express.json());
 
 
+//products table CRUD operations
+
 // GET all products
 app.get('/api/products', async (req, res) => {
   try {
@@ -61,6 +63,11 @@ app.delete('/api/products/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+
+//other crud goes here
+
 
 
 app.listen(5000, () => {
