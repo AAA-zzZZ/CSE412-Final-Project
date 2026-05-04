@@ -35,27 +35,26 @@ function MerchantList({ onEdit }) {
     };
 
     return (
-        <table border="1" cellPadding="10" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
-            <thead style={{ backgroundColor: '#f2f2f2' }}>
-                <tr>
-                    <th>ID</th><th>Name</th><th>Category</th><th>Manufacturer ID</th><th>Actions</th>
+    <table border="1" cellPadding="10" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+        <thead style={{ backgroundColor: '#f2f2f2' }}>
+            <tr>
+                <th>ID</th><th>Name</th><th>URL</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {merchants.length > 0 ? merchants.map(merchant => (
+                <tr key={merchant.merchantid}>
+                    <td>{merchant.merchantid}</td>
+                    <td>{merchant.name}</td>
+                    <td>{merchant.url}</td>
+                    <td>
+                        <button onClick={() => onEdit(merchant)} style={{ marginRight: '10px', backgroundColor: 'blue', color: 'white' }}>Edit</button>
+                        <button onClick={() => handleDelete(merchant.merchantid)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {products.length > 0 ? products.map(p => (
-                    <tr key={p.productid}>
-                        <td>{p.productid}</td>
-                        <td>{p.name}</td>
-                        <td>{p.category}</td>
-                        <td>{p.manufid}</td>
-                        <td>
-                            <button onClick={() => onEdit(p)} style={{ marginRight: '10px', backgroundColor: 'blue', color: 'white' }}>Edit</button>
-                            <button onClick={() => handleDelete(p.productid)} style={{ backgroundColor: 'red', color: 'white' }}>Delete</button>
-                        </td>
-                    </tr>
-                )) : <tr><td colSpan="5">No manufacturers found or backend is not connected yet.</td></tr>}
-            </tbody>
-        </table>
+            )) : <tr><td colSpan="4">No merchants found or backend is not connected yet.</td></tr>}
+        </tbody>
+    </table>
     );
 }
 
