@@ -67,7 +67,7 @@ app.delete('/api/products/:id', async (req, res) => {
 
 
 //other crud goes here
-
+//this is final v2, v1 changes main: the exist pull from current
 //merchant
 app.get('/api/merchants', async (req, res) => {
   try {
